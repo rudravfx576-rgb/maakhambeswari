@@ -44,22 +44,29 @@ const firebaseConfig = {
     };
 
     function handleLogin() {
-        const username = document.getElementById('loginUsername').value.trim().toLowerCase();
-        const role = document.getElementById('loginRole').value;
-        const pass = document.getElementById('loginPass').value.trim();
+        const usernameInput = document.getElementById('loginUsername');
+        const roleSelect = document.getElementById('loginRole');
+        const passInput = document.getElementById('loginPass');
         const errBox = document.getElementById('loginError');
+
+        const username = usernameInput.value.trim().toLowerCase();
+        const role = roleSelect.value;
+        const pass = passInput.value.trim();
 
         let isValid = false;
         if(role === 'admin' && username === '6370728974' && pass === 'Kanha@123') {
             isValid = true;
-        } else if(role === 'member' && username === 'member' && pass === 'member123') {
-            isValid = true;
+        
         } else if(role === 'admin' && username === '8260557695' && pass === 'Rudra@123') {
+            isValid = true;
+
+        } else if(role === 'member' && username === 'member' && pass === 'member123') {
             isValid = true;
         }
 
         if(isValid) {
             errBox.style.display = 'none';
+            sessionStorage.clear();
             localStorage.setItem('clubRole', role);
             localStorage.setItem('clubUsername', username);
             showDashboard(username, role);
