@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Maa Khambeswari Youth Club - Portal</title>
+    <!-- Firebase App (Compat) and Realtime Database SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon_io (1)/apple-touch-icon.png">
+       <link rel="icon" type="image/png" sizes="32x32" href="img/favicon_io (1)/favicon-32x32.png">
+       <link rel="icon" type="image/png" sizes="16x16" href="img/favicon_io (1)/favicon-16x16.png">
+       <link rel="manifest" href="img/favicon_io (1)/site.webmanifest">
+    <link rel="stylesheet" href="paymentstylr.css">
+    
+   
+</head>
+<body>
+
+<!-- LOGIN SECTION -->
+<div id="login-section">
+    <h2>Club Login</h2>
+    <div class="form-group" style="margin-bottom: 15px;">
+        <label>Username:</label>
+        <input type="text" id="loginUsername" placeholder="admin or member">
+    </div>
+    <div class="form-group" style="margin-bottom: 15px;">
+        <label>Select Role:</label>
+        <select id="loginRole">
+            <option value="admin">Admin</option>
+            <option value="member">Member</option>
+        </select>
+    </div>
+    <div class="form-group" style="margin-bottom: 20px;">
+        <label>Password:</label>
+        <input type="password" id="loginPass" placeholder="Enter password">
+    </div>
+    <button class="btn-main" onclick="handleLogin()">Login</button>
+    <div id="loginError" class="error-msg">Invalid Username, Role, or Password!</div>
+    <div style="margin-top: 15px; font-size: 12px; color: #7f8c8d; text-align: center;">
+         &reg; maa khambeswari youth clube
+    </div>
+</div>
+
+<!-- DASHBOARD SECTION -->
+<div id="dashboard-section" class="container" style="display: none;">
+    <img src="img/logo.png" style="width: 100px; height: 100px; position: absolute; bottom: 80%;">
+    <img src="img/logo.png" style="width: 100px; height: 100px; position: absolute; right: 19%; bottom: 80%;">
+    <div class="h1" style="font-size: 40px; font-family: sans-serif; font-weight: bold; text-align: center; padding: 20px 0 20px 0; background-color: hsl(189, 100%, 52%); width: 100%; border-radius: 10px;">MAA KHAMBESWARI YOUTH CLUB</div>
+    <div class="header-bar">
+        <h2 id="welcomeTitle" style="margin: 0;">Dashboard</h2>
+        <button class="btn-logout" onclick="handleLogout()">Logout</button>
+    </div>
+    
+    <div id="successAlert" class="success-msg">Operation Successful!</div>
+
+    <!-- Summary Cards -->
+    <div class="summary-cards">
+        <div class="card">
+            <h4>Total Fund Collected</h4>
+            <p id="totalFundCard">₹ 0</p>
+        </div>
+        <div class="card">
+            <h4>Total Donation Collected</h4>
+            <p id="totalDonationCard">₹ 0</p>
+        </div>
+        <div class="card" style="background: #e8f5e9; border-color: #c8e6c9;">
+            <h4 style="color: #2e7d32;">Grand Total Collection</h4>
+            <p id="grandTotalCard" style="color: #2e7d32;">₹ 0</p>
+        </div>
+    </div>
+
+    <!-- Entry Form -->
+    <div id="admin-form-container">
+        <div class="form-grid">
+            <div class="form-group">
+                <label>Receipt No:</label>
+                <input type="text" id="recNo" value="001">
+            </div>
+            <div class="form-group">
+                <label>Date:</label>
+                <input type="date" id="recDate">
+            </div>
+            <div class="form-group">
+                <label>Member Name (Sri/Smt):</label>
+                <!-- <input type="text" id="recName" placeholder="Enter member name"> -->
+                 <select name="membername" id="recName">
+                    <option value="--Select Your Name--">--Select Your Name--</option>
+                    <option value="LOCHAN BISOI">LOCHAN BISOI</option>
+                    <option value="KANHA PRADHAN">KANHA PRADHAN</option>
+                    <option value="PRATAP NAYAK">PRATAP NAYAK</option>
+                    <option value="BIKRAM BARIK">BIKRAM BARIK</option>
+                    <option value="SINU NAYAK">SINU NAYAK</option>
+                    <option value="BIPIN JANI">BIPIN JANI</option>
+                    <option value="RUDRA BARIK">RUDRA BARIK</option>
+                    <option value="BADAL BARIK">BADAL BARIK</option>
+                    <option value="RANJAN SAHOO">RANJAN SAHOO</option>
+                    <option value="RANJITA MAHAKHUD">RANJITA MAHAKHUD</option>
+                    <option value="DEBASISH KHILAR">DEBASISH KHILAR</option>
+                    <option value="JITENDRA NAYAK">JITENDRA NAYAK</option>
+                    <option value="PRATAP NAYAK">PRATAP NAYAK</option>
+                    <option value="JAGANNATH BARIK">JAGANNATH BARIK</option>
+                    <option value="AJIT MAHAKHUD">AJIT MAHAKHUD</option>
+                    <option value="BIJAY SAHOO">BIJAY SAHOO</option>
+                    <option value="RAJA MAHAKHUD">RAJA MAHAKHUD</option>
+                    <option value="SWADHIN SAHOO">SWADHIN SAHOO</option>
+                    <option value="BIBHUTI BHUSAN BARIK">BIBHUTI BHUSAN BARIK</option>
+                    <option value="KUNA NAYAK">KUNA NAYAK</option>
+                    <option value="PAPI NAYAK">PAPI NAYAK</option>
+                    <option value="SAMIRA NAYAK">SAMIRA NAYAK</option>
+                    <option value="SIBA PRADHAN">SIBA PRADHAN</option>
+                    <option value="SAROJ NAYAK">SAROJ NAYAK</option>
+                    <option value="SUSANT KHILAR">SUSANT KHILAR</option>
+                    <option value="SURA MAHAKHUD">SURA MAHAKHUD</option>
+                    <option value="KISHOR BARIK">KISHOR BARIK</option>
+                    <option value="MANAS KHILAR">MANAS KHILAR</option>
+                    <option value="SAMIR BARIK">SAMIR BARIK</option>
+                    <option value="PRAJITA NAYAK">PRAJITA NAYAK</option>
+                    <option value="PRAVAT BARIK">PRAVAT BARIK</option>
+                    <option value="MANOJ SAHOO">MANOJ SAHOO</option>
+                    <option value="NIRAKARA SAHOO">NIRAKARA SAHOO</option>
+                    <option value="DINABANDHU SAHOO">DINABANDHU SAHOO</option>
+                    <option value="SANJAYA SAHOO">SANJAYA SAHOO</option>
+                    <option value="#"></option>
+                 </select>
+            </div>
+            <div class="form-group">
+                <!-- <input type="text" id="recFather" placeholder="Enter guardian name"> -->
+                 <select name="clubname" id="recFather">
+                   <option value="--Select Your Club Name--">--Select Your Club Name--</option>
+                   <option value="Maa Khambeswari Youth Club">Maa Khambeswari Youth Club</option>
+                 </select>
+            </div>
+            <div class="form-group">
+                <label>Membership / Festival Fund (₹):</label>
+                <input type="number" id="recFund" value="0">
+            </div>
+            <div class="form-group">
+                <label>Donation Amount (₹):</label>
+                <input type="number" id="recDonation" value="0">
+            </div>
+            <div class="form-group" style="grid-column: span 2;">
+                <label>Payment Mode:</label>
+                <select id="recMode">
+                    <option value="Cash">Cash</option>
+                    <option value="UPI">UPI (PhonePe/GPay)</option>
+                    <option value="Bank Transfer">Bank Transfer</option>
+                </select>
+            </div>
+        </div>
+        <button class="btn-main" onclick="processPayment()">Pay Now & Submit Entry</button>
+        <hr>
+    </div>
+
+    <h3>Entries Record & Approval Status</h3>
+    
+    <!-- Search & Export Toolbar -->
+    <div class="toolbar">
+        <input type="text" id="searchInput" class="search-input" placeholder="Search by Name or Receipt No..." onkeyup="renderTable()">
+        <button class="btn-export" onclick="exportToExcel()">📥 Download Excel (CSV)</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Receipt No</th>
+                <th>Name</th>
+                <th>Total Amount (₹)</th>
+                <th>Mode</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="entryTableBody">
+            <!-- Entries will appear here -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Colorful & Modern Money Receipt Template for Print -->
+<div id="receipt-print-box">
+    <div style="max-width: 720px; margin: 20px auto; border: 4px solid #3498db; padding: 35px; font-family: 'Helvetica Neue', Arial, sans-serif; background: #ffffff; color: #333333; box-shadow: 0 0 15px rgba(52, 152, 219, 0.3); border-radius: 10px;">
+        
+        <!-- Colorful Header Section with Gradient Effect -->
+        <div style="text-align: center; background: linear-gradient(135deg, #2980b9, #2c3e50); color: white; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+            <div style="font-size: 12px; font-weight: bold; color: #f1c40f; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 5px;">|| Jai Maa Khambeswari ||</div>
+            <h1 style="margin: 0; text-transform: uppercase; font-size: 26px; letter-spacing: 1px; font-weight: 800; color: #ffffff;">Maa Khambeswari Youth Club</h1>
+            <p style="margin: 6px 0; font-size: 13px; color: #ecf0f1;"><strong>At:</strong> Sakeni, Nayagada &nbsp;|&nbsp; <strong>Estd:</strong> 2025</p>
+            <p style="margin: 4px 0; font-size: 13px; color: #ecf0f1;"><strong>Contact:</strong> +91 6370728974</p>
+            
+            <div style="margin-top: 12px;">
+                <span style="background: #e74c3c; color: white; padding: 5px 25px; font-size: 13px; font-weight: bold; display: inline-block; border-radius: 20px; text-transform: uppercase; letter-spacing: 1.5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">Official Money Receipt</span>
+            </div>
+        </div>
+
+        <!-- Colorful Receipt Info Bar -->
+        <div style="display: flex; justify-content: space-between; font-size: 14px; font-weight: bold; margin-bottom: 20px; background: #ebf5fb; padding: 12px 18px; border-radius: 6px; border-left: 5px solid #2980b9;">
+            <div>Receipt No: <span id="pdfRecNo" style="color: #c0392b; font-size: 16px;"></span></div>
+            <div>Date: <span id="pdfDate" style="color: #27ae60; font-size: 15px;"></span></div>
+        </div>
+
+        <div style="font-size: 14px; line-height: 2; margin-bottom: 20px; background: #fdfefe; border: 1px solid #eaeded; border-radius: 6px; padding: 15px;">
+            <div><strong>Received with thanks from Sri/Smt:</strong> <span id="pdfName" style="color: #2980b9; font-weight: bold; text-transform: uppercase;"></span></div>
+            <div><strong>Father's / Husband's Name:</strong> <span id="pdfFather" style="color: #555;"></span></div>
+            <div><strong>Payment Mode:</strong> <span id="pdfMode" style="background: #f39c12; color: white; padding: 3px 12px; border-radius: 4px; font-size: 13px;"></span></div>
+        </div>
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px;">
+            <thead>
+                <tr>
+                    <th style="padding: 12px; background: #34495e; color: white; text-align: left;">Particulars</th>
+                    <th style="padding: 12px; background: #34495e; color: white; text-align: right; width: 160px;">Amount (₹)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border: 1px solid #eaeded; padding: 12px;">Membership / Festival Fund Contribution</td>
+                    <td style="border: 1px solid #eaeded; padding: 12px; text-align: right; font-weight: 600;" id="pdfFundVal">₹ 0</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #eaeded; padding: 12px;">Donation Amount</td>
+                    <td style="border: 1px solid #eaeded; padding: 12px; text-align: right; font-weight: 600;" id="pdfDonationVal">₹ 0</td>
+                </tr>
+                <tr style="background: #d4efdf;">
+                    <td style="border: 1px solid #a9dfbf; padding: 12px; font-weight: bold; color: #145a32;">Total Amount Paid</td>
+                    <td style="border: 1px solid #a9dfbf; padding: 12px; text-align: right; font-weight: bold; color: #1e8449;" id="pdfTotalVal">₹ 0</td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="margin-top: 50px; display: flex; justify-content: space-between; font-weight: bold; font-size: 13px;">
+            <div style="border-top: 2px dashed #7f8c8d; padding-top: 8px; width: 220px; text-align: center;">Depositor's Signature</div>
+            <div style="border-top: 2px dashed #7f8c8d; padding-top: 8px; width: 220px; text-align: center;">Authorized Cashier</div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="payment.js"></script>
+
+</body>
+</html>
