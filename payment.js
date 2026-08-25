@@ -36,8 +36,8 @@ const firebaseConfig = {
     });
 
     window.onload = function() {
-        let currentRole = localStorage.getItem('clubRole');
-        let currentUsername = localStorage.getItem('clubUsername');
+        let currentRole = sessionStorage.getItem('clubRole');
+        let currentUsername = sessionStorage.getItem('clubUsername');
         if(currentRole && currentUsername) {
             showDashboard(currentUsername, currentRole);
         }
@@ -80,8 +80,8 @@ const firebaseConfig = {
     }
 
     function handleLogout() {
-        localStorage.removeItem('clubRole');
-        localStorage.removeItem('clubUsername');
+        sessionStorage.removeItem('clubRole');
+        sessionStorage.removeItem('clubUsername');
         location.reload();
     }
 
