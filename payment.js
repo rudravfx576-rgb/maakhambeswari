@@ -53,6 +53,12 @@ const firebaseConfig = {
         const role = roleSelect.value;
         const pass = passInput.value.trim();
 
+        if (!role) {
+            errBox.innerText = "Please select admin or member";
+            errBox.style.display = 'block';
+            return;
+        }
+      
         let isValid = false;
         if(role === 'admin' && username === '6370728974' && pass === 'Kanha@123') {
             isValid = true;
@@ -69,11 +75,11 @@ const firebaseConfig = {
             sessionStorage.clear();
             localStorage.setItem('clubRole', role);
             localStorage.setItem('clubUsername', username);
-            showDashboard(username, role);
+             showDashboard(username, role);
         } else {
+            errBox.innerText = "Invalid Username, or Password!";
             errBox.style.display = 'block';
         }
-    }
 
     function showDashboard(username, role) {
         document.getElementById('login-section').style.display = 'none';
