@@ -44,42 +44,53 @@ const firebaseConfig = {
     };
 
     function handleLogin() {
-        const usernameInput = document.getElementById('loginUsername');
-        const roleSelect = document.getElementById('loginRole');
-        const passInput = document.getElementById('loginPass');
+        const usernameInput = document.getElementById('loginUsername').value.trim().toLowerCase();
+        const roleSelect = document.getElementById('loginRole').value;
+        const passInput = document.getElementById('loginPass').value.trim;
         const errBox = document.getElementById('loginError');
 
-        const username = usernameInput.value.trim().toLowerCase();
-        const role = roleSelect.value;
-        const pass = passInput.value.trim();
+        // const username = usernameInput.value.trim().toLowerCase();
+        // const role = roleSelect.value;
+        // const pass = passInput.value.trim();
 
-        if (!role) {
-            errBox.innerText = "Please select admin or member";
-            errBox.style.display = 'block';
-            return;
-        }
-      
-        let isValid = false;
+        // if (!role) {
+        //     errBox.innerText = "Please select admin or member";
+        //     errBox.style.display = 'block';
+        //     return;
+        // }
+
+        // let isValid = false;
+
         if(role === 'admin' && username === '6370728974' && pass === 'Kanha@123') {
-            isValid = true;
+           errBox.style.display = 'none';
+            sessionStorage.clear();
+            localStorage.setItem('clubRole', role);
+            localStorage.setItem('clubUsername', username);
+            showDashboard(username, role); 
         
-        } else if(role === 'admin' && username === '8260557695' && pass === 'Rudra@123') {
-            isValid = true;
-
-        } else if(role === 'member' && username === 'member' && pass === 'member123') {
-            isValid = true;
-        }
-
-        if(isValid) {
+        } 
+        else if(role === 'member' && username === 'member' && pass === 'member123') {
             errBox.style.display = 'none';
             sessionStorage.clear();
             localStorage.setItem('clubRole', role);
             localStorage.setItem('clubUsername', username);
-             showDashboard(username, role);
-        } else {
+            showDashboard(username, role);
+
+        }
+        
+
+        // if(isValid) {
+        //     errBox.style.display = 'none';
+        //     sessionStorage.clear();
+        //     localStorage.setItem('clubRole', role);
+        //     localStorage.setItem('clubUsername', username);
+        //     showDashboard(username, role);
+
+        else {
             errBox.innerText = "Invalid Username, or Password!";
             errBox.style.display = 'block';
         }
+    }
 
     function showDashboard(username, role) {
         document.getElementById('login-section').style.display = 'none';
