@@ -50,7 +50,7 @@ const firebaseConfig = {
         const errBox = document.getElementById('loginError');
 
         let isValid = false;
-        if(role === 'admin' && username === '6370728974' && pass === 'Kanha@123') {
+        if(role === 'admin' && username === '6370728974' && pass === 'Kanha@2005') {
             isValid = true;
         } else if(role === 'member' && username === 'member' && pass === 'member123') {
             isValid = true;
